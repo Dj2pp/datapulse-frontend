@@ -5,7 +5,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 
 export const metadata: Metadata = {
-  title: "DataPulse — AI Data Quality & Duplicate Detection",
+  title: "CorePulse — AI Data Quality & Duplicate Detection",
   description: "Upload any Excel or CSV file. Instantly detect duplicates, missing data, and quality issues with AI-powered analysis.",
 };
 

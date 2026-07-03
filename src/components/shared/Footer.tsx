@@ -34,7 +34,7 @@ export function Footer() {
           ))}
         </div>
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 md:flex-row">
-          <p className="text-xs text-muted-foreground">© 2024 DataPulse Technologies, Inc. All rights reserved.</p>
+          <p className="text-xs text-muted-foreground">© 2024 CorePulse Technologies, Inc. All rights reserved.</p>
           <p className="text-xs text-muted-foreground">SOC 2 Type II Certified · GDPR Compliant · ISO 27001</p>
         </div>
       </div>

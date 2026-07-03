@@ -40,7 +40,7 @@ export function TopBar({ onMenuClick }: { onMenuClick?: () => void }) {
         <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary">
           <Zap className="h-4 w-4 text-primary-foreground" />
         </div>
-        <span className="text-sm font-semibold">DataPulse</span>
+        <span className="text-sm font-semibold">CorePulse</span>
       </div>
       <div className="hidden lg:block text-sm text-muted-foreground">
         Welcome back, <span className="text-foreground font-medium">{displayName}</span>
