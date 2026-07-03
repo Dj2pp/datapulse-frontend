@@ -10,7 +10,7 @@
  * pipeline runs on the server.
  */
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+const API_BASE = process.env.NEXT_PUBLIC_API_URL || "https://dhr-d4ds.onrender.com";
 
 import { supabase } from "./supabase";
 
