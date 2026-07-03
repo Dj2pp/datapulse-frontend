@@ -11,6 +11,7 @@ import { useAuth } from "@/lib/auth";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/utils";
 
+
 export default function SignupPage() {
   const router = useRouter();
   const { signup } = useAuth();
@@ -143,7 +144,7 @@ export default function SignupPage() {
             <p className="text-xs text-red-500">Passwords don&apos;t match yet.</p>
           )}
         </div>
-
+        
         <Button type="submit" className="w-full" size="lg" disabled={submitting}>
           {submitting ? (
             <>

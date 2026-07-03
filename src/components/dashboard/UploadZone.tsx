@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { useReport } from "@/lib/ReportContext";
-import { checkHealth, getCleanedFileUrl, getPdfReportUrl, getPipelineCsvUrl } from "@/lib/api";
+import { checkHealth, getCleanedFileUrl, getPdfReportUrl, getPipelineCsvUrl, wakeBackend } from "@/lib/api";
 import { useAuth } from "@/lib/auth";
 import { track } from "@/lib/analytics";
 import { toFriendlyMessage, FRIENDLY_ERRORS } from "@/lib/errors";
@@ -41,6 +41,9 @@ export function UploadZone({ onAnalyzed }: { onAnalyzed?: () => void }) {
   const [validating, setValidating] = useState(false);
   const [remaining, setRemaining] = useState<number>(FREE_BETA_LIMITS.uploadsPerDay);
   const inputRef = useRef<HTMLInputElement>(null);
+  const [wakeStatus,  setWakeStatus]  = useState("");
+const [wakeElapsed, setWakeElapsed] = useState(0);
+const [isWaking,    setIsWaking]    = useState(false);
   const userId = user?.id ?? null;
 
   useEffect(() => {
@@ -87,14 +90,28 @@ export function UploadZone({ onAnalyzed }: { onAnalyzed?: () => void }) {
     setRemaining(getRemainingUploadsToday(userId));
 
     try {
+      // Step 1: wake the Render server before doing anything
+      setIsWaking(true);
+      const online = await wakeBackend(
+        (msg)  => setWakeStatus(msg),
+        (secs) => setWakeElapsed(secs),
+      );
+      setIsWaking(false);
+  
+      // Step 2: if server never woke up, show error and stop
+      if (!online) {
+        setLocal("error");
+        return;
+      }
+  
+      // Step 3: server is alive, now do the actual upload
       await upload(file, threshold);
-      track("Upload Completed", { filename: file.name });
       onAnalyzed?.();
     } catch {
-      track("Processing Failed", { filename: file.name });
+      setIsWaking(false);
       setLocal("error");
     }
-  }, [upload, threshold, onAnalyzed, userId]);
+  }, [upload, threshold, onAnalyzed]);
 
   // Persist a lightweight job summary once a report lands.
   useEffect(() => {
@@ -124,9 +141,9 @@ export function UploadZone({ onAnalyzed }: { onAnalyzed?: () => void }) {
   const showDone  = !loading && !!report && local !== "error";
   const displayError = localError ?? toFriendlyMessage(error);
 
-  const apiBase = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+  const apiBase = process.env.NEXT_PUBLIC_API_URL || "https://dhr-d4ds.onrender.com";
   const PhaseIcon = PHASE_ICONS[phase];
-
+ 
   // Progress bar colour: blue uploading, violet processing, green finalizing
   const barColor = phase === "finalizing" ? "bg-emerald-500"
     : phase === "processing" ? "bg-violet-500"
@@ -134,6 +151,34 @@ export function UploadZone({ onAnalyzed }: { onAnalyzed?: () => void }) {
 
   return (
     <div className="max-w-2xl mx-auto space-y-4">
+      {/* Server wake-up modal — shows while Render cold-starts */}
+{isWaking && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center">
+    {/* Dark backdrop */}
+    <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" />
+
+    {/* Modal card */}
+    <div className="relative w-full max-w-sm mx-4 rounded-2xl border border-border bg-card p-8 text-center space-y-4 shadow-2xl">
+
+      {/* Spinner icon */}
+      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 mx-auto">
+        <Loader2 className="h-7 w-7 animate-spin text-primary" />
+      </div>
+
+      {/* Title and live status message */}
+      <div>
+        <h3 className="text-base font-semibold">Starting server…</h3>
+        <p className="text-sm text-muted-foreground mt-1">{wakeStatus}</p>
+      </div>
+
+      {/* Live elapsed seconds counter */}
+      <p className="text-xs text-muted-foreground">
+        ⏱ {wakeElapsed}s elapsed · Render cold start takes 30–60s
+      </p>
+
+    </div>
+  </div>
+)}
       <div className="flex items-start justify-between gap-3 flex-wrap">
         <div>
           <h2 className="text-base font-semibold">Upload a file</h2>

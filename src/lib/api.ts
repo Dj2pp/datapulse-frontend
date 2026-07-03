@@ -183,3 +183,51 @@ export async function checkHealth(): Promise<boolean> {
   try { const res = await fetch(`${API_BASE}/api/health`, { signal: AbortSignal.timeout(3000) }); return res.ok; }
   catch { return false; }
 }
+export async function wakeBackend(
+  onStatus?:  (msg: string) => void,
+  onElapsed?: (secs: number) => void,
+  maxWaitMs = 90_000,
+): Promise<boolean> {
+  const POLL_MS = 2_500;
+  const started = Date.now();
+  let attempt = 0;
+  let elapsedSecs = 0;
+
+  const ticker = setInterval(() => {
+    elapsedSecs++;
+    onElapsed?.(elapsedSecs);
+  }, 1_000);
+
+  const messages = [
+    "Waking up server…",
+    "Server is starting, please wait…",
+    "Still starting — Render cold start takes 30–60s…",
+    "Almost there…",
+    "Hang tight, loading your environment…",
+  ];
+
+  try {
+    while (Date.now() - started < maxWaitMs) {
+      onStatus?.(messages[Math.min(attempt, messages.length - 1)]);
+      attempt++;
+      try {
+        const res = await fetch(`${API_BASE}/api/health`, {
+          signal: AbortSignal.timeout(4_000),
+          cache: "no-store",
+        });
+        if (res.ok) {
+          onStatus?.("Server is ready!");
+          return true;
+        }
+      } catch {
+        // still sleeping
+      }
+      await new Promise<void>((r) => setTimeout(r, POLL_MS));
+    }
+    onStatus?.("Server did not respond. Please try again.");
+    return false;
+  } finally {
+    clearInterval(ticker);
+  }
+}
+

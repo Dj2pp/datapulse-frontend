@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { AuthProvider } from "@/lib/auth";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 
 export const metadata: Metadata = {
   title: "DataPulse — AI Data Quality & Duplicate Detection",
