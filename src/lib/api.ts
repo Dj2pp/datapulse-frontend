@@ -1,5 +1,5 @@
 /**
- * api.ts — Client for the DataPulse Flask backend.
+ * api.ts — Client for the CorePulse Flask backend.
  * Set NEXT_PUBLIC_API_URL in .env.local (default: http://localhost:8000).
  *
  * Progress reporting has two phases:

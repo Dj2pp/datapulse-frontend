@@ -217,12 +217,9 @@ export function ComparisonTable() {
                 <p className="text-xs text-muted-foreground">Batches medium-confidence pairs (10-20 per call) to your configured model for a second opinion.</p>
               </>
             ) : (
-              <>
-                <p className="text-xs font-medium">AI verification not connected</p>
-                <p className="text-xs text-muted-foreground">
-                  Add a free API key in <code className="px-1 py-0.5 rounded bg-muted font-mono">backend/.env</code> (Groq, OpenRouter, or Gemini) to auto-verify uncertain matches. Manual review below works either way.
-                </p>
-              </>
+              <p className="text-xs font-medium">
+                AI verification not connected — add a free API key in <code className="px-1 py-0.5 rounded bg-muted font-mono">backend/.env</code> to auto-verify uncertain matches.
+              </p>
             )}
           </div>
           <Button

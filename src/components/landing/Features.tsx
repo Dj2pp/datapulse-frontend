@@ -9,7 +9,7 @@ const features = [
   { icon: BarChart3, title: "Quality Score Dashboard", description: "A single 0–100 quality score with column-level breakdowns. Track improvement over time as you clean and re-upload your data." },
   { icon: FileDown, title: "One-Click Cleaned Export", description: "Download a deduplicated, validated Excel file instantly. Rows annotated with issue flags so your team knows exactly what changed." },
   { icon: Zap, title: "AI-Powered Insights", description: "Executive-ready summaries and prioritized recommendations generated automatically — no manual analysis required." },
-  { icon: ShieldCheck, title: "Enterprise Security", description: "Files processed in-memory, never stored permanently. SOC 2 Type II certified with end-to-end encryption in transit and at rest." },
+  { icon: ShieldCheck, title: "Enterprise Security", description: "Files processed in-memory, never stored permanently. End-to-end encryption in transit and at rest." },
 ];
 
 function FeatureCard({ feature, index }: { feature: typeof features[0]; index: number }) {
@@ -49,7 +49,7 @@ export function Features() {
         >
           <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-3">Capabilities</p>
           <h2 className="text-3xl font-semibold tracking-tight sm:text-4xl">Everything you need to trust your data</h2>
-          <p className="mt-4 text-muted-foreground leading-relaxed">From a single file upload to enterprise-grade data pipelines — DataPulse handles the entire quality lifecycle.</p>
+          <p className="mt-4 text-muted-foreground leading-relaxed">From a single file upload to enterprise-grade data pipelines — CorePulse handles the entire quality lifecycle.</p>
         </div>
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {features.map((f, i) => <FeatureCard key={f.title} feature={f} index={i} />)}

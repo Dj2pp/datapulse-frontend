@@ -1,4 +1,4 @@
-# DataPulse — AI Data Quality & Duplicate Detection SaaS
+# CorePulse — AI Data Quality & Duplicate Detection SaaS
 
 ## ✨ Production auth: Supabase + JWT
 

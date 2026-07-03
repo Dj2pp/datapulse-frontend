@@ -33,7 +33,7 @@ export function Navbar() {
             <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary">
               <Zap className="h-4 w-4 text-primary-foreground" />
             </div>
-            <span className="text-sm font-semibold tracking-tight">DataPulse</span>
+            <span className="text-sm font-semibold tracking-tight">CorePulse</span>
           </Link>
           <nav className="hidden items-center gap-1 md:flex">
             {navLinks.map((l) => (

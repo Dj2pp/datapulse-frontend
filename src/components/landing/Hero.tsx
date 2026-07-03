@@ -30,7 +30,7 @@ function MockDashboardCard() {
         <span className="h-2.5 w-2.5 rounded-full bg-red-400/60" />
         <span className="h-2.5 w-2.5 rounded-full bg-amber-400/60" />
         <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/60" />
-        <span className="ml-3 text-xs font-mono text-muted-foreground">customer_database_q2.xlsx — DataPulse</span>
+        <span className="ml-3 text-xs font-mono text-muted-foreground">customer_database_q2.xlsx — CorePulse</span>
       </div>
 
       <div className="p-5">
@@ -120,7 +120,7 @@ export function Hero() {
             </h1>
 
             <p className="animate-reveal-up delay-200 mt-5 text-base text-muted-foreground leading-relaxed max-w-lg">
-              DataPulse analyzes spreadsheets in seconds — detecting exact and fuzzy duplicates,
+              CorePulse analyzes spreadsheets in seconds — detecting exact and fuzzy duplicates,
               flagging missing values, and generating a quality score with actionable AI recommendations.
             </p>
 

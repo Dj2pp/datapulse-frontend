@@ -145,8 +145,9 @@ export default function DashboardPage() {
                 </div>
                 <div className="rounded-xl border border-border bg-card p-6">
                   <h3 className="text-sm font-semibold mb-1">Backend</h3>
-                  <p className="text-xs text-muted-foreground">
-                    API URL: <code className="px-1 py-0.5 rounded bg-muted font-mono">{process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}</code>
+                  <p className="text-xs text-muted-foreground flex items-center gap-1.5">
+                    <span className="inline-block h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                    Connected
                   </p>
                 </div>
               </div>

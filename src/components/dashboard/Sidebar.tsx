@@ -33,7 +33,7 @@ export function Sidebar({ activeTab, onTabChange, mobileOpen, onMobileClose }: S
           <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-primary">
             <Zap className="h-4 w-4 text-primary-foreground" />
           </div>
-          <span className="text-sm font-semibold">DataPulse</span>
+          <span className="text-sm font-semibold">CorePulse</span>
         </div>
         <button onClick={onMobileClose} aria-label="Close menu"
           className="lg:hidden rounded-md p-1.5 text-muted-foreground hover:bg-accent">

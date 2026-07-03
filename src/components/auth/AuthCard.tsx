@@ -24,7 +24,7 @@ export function AuthCard({
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary shadow-lg shadow-primary/30">
             <Zap className="h-4 w-4 text-primary-foreground" />
           </div>
-          <span className="text-base font-semibold tracking-tight">DataPulse</span>
+          <span className="text-base font-semibold tracking-tight">CorePulse</span>
         </Link>
 
         <div className="rounded-2xl border border-border/60 bg-card/70 p-8 shadow-2xl shadow-primary/5 backdrop-blur-xl">
