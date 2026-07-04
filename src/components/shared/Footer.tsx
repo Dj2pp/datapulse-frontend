@@ -6,7 +6,7 @@ const TERMS_URL = "https://example.com/terms";
 const PRIVACY_URL = "https://example.com/privacy";
 
 const footerLinks = {
-  Product: ["Features", "Pricing", "Changelog", "Roadmap"],
+  Product: ["Features", "Changelog", "Roadmap"],
   Developers: ["Documentation", "API Reference", "SDKs", "Status"],
   Company: ["About", "Blog", "Careers", "Press"],
   Legal: ["Privacy", "Terms", "Security", "Cookies"],

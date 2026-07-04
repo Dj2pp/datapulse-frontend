@@ -1,15 +1,7 @@
 "use client";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { useReveal } from "@/components/animations/useReveal";
-
-const faqs = [
-  { q: "What file formats are supported?", a: "CorePulse supports Excel (.xlsx, .xls), CSV, and TSV files. You can upload files up to 50MB on the free plan and up to 500MB on Pro." },
-  { q: "How does fuzzy duplicate detection work?", a: "We use a combination of Levenshtein distance, Soundex phonetic matching, and token-based comparison to catch near-duplicates like 'Jon Smith' vs 'John Smith'. Sensitivity thresholds are configurable on Pro and Enterprise plans." },
-  { q: "Is my data secure and private?", a: "Yes. Files are processed in isolated, ephemeral compute environments and never written to permanent storage. All data is encrypted in transit (TLS 1.3) and at rest (AES-256)." },
-  { q: "Can I automate uploads via API?", a: "Yes, the CorePulse REST API allows you to submit files, poll for results, and retrieve structured JSON reports programmatically. API access is available on Pro and Enterprise plans." },
-  { q: "How is the quality score calculated?", a: "The quality score (0–100) is a weighted composite of: completeness (fill rate), uniqueness (absence of duplicates), consistency (format uniformity), and validity (values within expected ranges). Weights are tunable on Enterprise." },
-  { q: "What happens after the 14-day trial?", a: "At the end of your trial you are automatically moved to the free Starter plan. No credit card is required to start the trial and you will not be charged unless you upgrade." },
-];
+import { faqs } from "@/lib/faqs";
 
 export function FAQ() {
   const { ref, visible } = useReveal();

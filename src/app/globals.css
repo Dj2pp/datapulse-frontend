@@ -246,12 +246,44 @@
   background-size: 40px 40px;
 }
 
+/* ── Marquee (trust bar) ── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.animate-marquee { animation: marquee 28s linear infinite; }
+.marquee-pause:hover .animate-marquee { animation-play-state: paused; }
+
+/* ── Scroll progress bar ── */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2.5px;
+  z-index: 60;
+  background: linear-gradient(90deg, hsl(var(--primary)), #6366f1);
+  transform-origin: left;
+  box-shadow: 0 0 8px hsl(var(--primary) / 0.6);
+}
+
+/* ── Animated gradient background (CTA band) ── */
+@keyframes gradient-pan {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-gradient-pan {
+  background-size: 200% 200%;
+  animation: gradient-pan 8s ease infinite;
+}
+
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
   .animate-float, .animate-float-delayed, .animate-float-slow,
   .animate-orbit, .animate-orbit-reverse, .animate-pulse-glow,
   .animate-shimmer, .gradient-text, .animate-reveal-up,
-  .animate-reveal-scale, .progress-animated {
+  .animate-reveal-scale, .progress-animated,
+  .animate-marquee, .animate-gradient-pan {
     animation: none !important;
     transition: none !important;
   }
